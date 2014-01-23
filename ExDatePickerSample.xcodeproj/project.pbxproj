@@ -1,0 +1,475 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		09611235189132B600288FA1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09611234189132B600288FA1 /* Foundation.framework */; };
+		09611237189132B600288FA1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09611236189132B600288FA1 /* CoreGraphics.framework */; };
+		09611239189132B600288FA1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09611238189132B600288FA1 /* UIKit.framework */; };
+		0961123F189132B600288FA1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0961123D189132B600288FA1 /* InfoPlist.strings */; };
+		09611241189132B600288FA1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 09611240189132B600288FA1 /* main.m */; };
+		09611245189132B600288FA1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 09611244189132B600288FA1 /* AppDelegate.m */; };
+		09611248189132B600288FA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09611246189132B600288FA1 /* Main.storyboard */; };
+		0961124B189132B600288FA1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961124A189132B600288FA1 /* ViewController.m */; };
+		0961124D189132B600288FA1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0961124C189132B600288FA1 /* Images.xcassets */; };
+		09611254189132B700288FA1 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09611253189132B700288FA1 /* XCTest.framework */; };
+		09611255189132B700288FA1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09611234189132B600288FA1 /* Foundation.framework */; };
+		09611256189132B700288FA1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09611238189132B600288FA1 /* UIKit.framework */; };
+		0961125E189132B700288FA1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0961125C189132B700288FA1 /* InfoPlist.strings */; };
+		09611260189132B700288FA1 /* ExDatePickerSampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961125F189132B700288FA1 /* ExDatePickerSampleTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		09611257189132B700288FA1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09611229189132B500288FA1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 09611230189132B500288FA1;
+			remoteInfo = ExDatePickerSample;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		09611231189132B500288FA1 /* ExDatePickerSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExDatePickerSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		09611234189132B600288FA1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		09611236189132B600288FA1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		09611238189132B600288FA1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		0961123C189132B600288FA1 /* ExDatePickerSample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExDatePickerSample-Info.plist"; sourceTree = "<group>"; };
+		0961123E189132B600288FA1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		09611240189132B600288FA1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		09611242189132B600288FA1 /* ExDatePickerSample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ExDatePickerSample-Prefix.pch"; sourceTree = "<group>"; };
+		09611243189132B600288FA1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		09611244189132B600288FA1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		09611247189132B600288FA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		09611249189132B600288FA1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		0961124A189132B600288FA1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		0961124C189132B600288FA1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		09611252189132B700288FA1 /* ExDatePickerSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExDatePickerSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		09611253189132B700288FA1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		0961125B189132B700288FA1 /* ExDatePickerSampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExDatePickerSampleTests-Info.plist"; sourceTree = "<group>"; };
+		0961125D189132B700288FA1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0961125F189132B700288FA1 /* ExDatePickerSampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExDatePickerSampleTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0961122E189132B500288FA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09611237189132B600288FA1 /* CoreGraphics.framework in Frameworks */,
+				09611239189132B600288FA1 /* UIKit.framework in Frameworks */,
+				09611235189132B600288FA1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0961124F189132B700288FA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09611254189132B700288FA1 /* XCTest.framework in Frameworks */,
+				09611256189132B700288FA1 /* UIKit.framework in Frameworks */,
+				09611255189132B700288FA1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		09611228189132B400288FA1 = {
+			isa = PBXGroup;
+			children = (
+				0961123A189132B600288FA1 /* ExDatePickerSample */,
+				09611259189132B700288FA1 /* ExDatePickerSampleTests */,
+				09611233189132B500288FA1 /* Frameworks */,
+				09611232189132B500288FA1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		09611232189132B500288FA1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				09611231189132B500288FA1 /* ExDatePickerSample.app */,
+				09611252189132B700288FA1 /* ExDatePickerSampleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		09611233189132B500288FA1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				09611234189132B600288FA1 /* Foundation.framework */,
+				09611236189132B600288FA1 /* CoreGraphics.framework */,
+				09611238189132B600288FA1 /* UIKit.framework */,
+				09611253189132B700288FA1 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0961123A189132B600288FA1 /* ExDatePickerSample */ = {
+			isa = PBXGroup;
+			children = (
+				09611243189132B600288FA1 /* AppDelegate.h */,
+				09611244189132B600288FA1 /* AppDelegate.m */,
+				09611246189132B600288FA1 /* Main.storyboard */,
+				09611249189132B600288FA1 /* ViewController.h */,
+				0961124A189132B600288FA1 /* ViewController.m */,
+				0961124C189132B600288FA1 /* Images.xcassets */,
+				0961123B189132B600288FA1 /* Supporting Files */,
+			);
+			path = ExDatePickerSample;
+			sourceTree = "<group>";
+		};
+		0961123B189132B600288FA1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0961123C189132B600288FA1 /* ExDatePickerSample-Info.plist */,
+				0961123D189132B600288FA1 /* InfoPlist.strings */,
+				09611240189132B600288FA1 /* main.m */,
+				09611242189132B600288FA1 /* ExDatePickerSample-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		09611259189132B700288FA1 /* ExDatePickerSampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				0961125F189132B700288FA1 /* ExDatePickerSampleTests.m */,
+				0961125A189132B700288FA1 /* Supporting Files */,
+			);
+			path = ExDatePickerSampleTests;
+			sourceTree = "<group>";
+		};
+		0961125A189132B700288FA1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0961125B189132B700288FA1 /* ExDatePickerSampleTests-Info.plist */,
+				0961125C189132B700288FA1 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		09611230189132B500288FA1 /* ExDatePickerSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09611263189132B700288FA1 /* Build configuration list for PBXNativeTarget "ExDatePickerSample" */;
+			buildPhases = (
+				0961122D189132B500288FA1 /* Sources */,
+				0961122E189132B500288FA1 /* Frameworks */,
+				0961122F189132B500288FA1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ExDatePickerSample;
+			productName = ExDatePickerSample;
+			productReference = 09611231189132B500288FA1 /* ExDatePickerSample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		09611251189132B700288FA1 /* ExDatePickerSampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09611266189132B700288FA1 /* Build configuration list for PBXNativeTarget "ExDatePickerSampleTests" */;
+			buildPhases = (
+				0961124E189132B700288FA1 /* Sources */,
+				0961124F189132B700288FA1 /* Frameworks */,
+				09611250189132B700288FA1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				09611258189132B700288FA1 /* PBXTargetDependency */,
+			);
+			name = ExDatePickerSampleTests;
+			productName = ExDatePickerSampleTests;
+			productReference = 09611252189132B700288FA1 /* ExDatePickerSampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		09611229189132B500288FA1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = vk;
+				TargetAttributes = {
+					09611251189132B700288FA1 = {
+						TestTargetID = 09611230189132B500288FA1;
+					};
+				};
+			};
+			buildConfigurationList = 0961122C189132B500288FA1 /* Build configuration list for PBXProject "ExDatePickerSample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 09611228189132B400288FA1;
+			productRefGroup = 09611232189132B500288FA1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				09611230189132B500288FA1 /* ExDatePickerSample */,
+				09611251189132B700288FA1 /* ExDatePickerSampleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0961122F189132B500288FA1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0961124D189132B600288FA1 /* Images.xcassets in Resources */,
+				0961123F189132B600288FA1 /* InfoPlist.strings in Resources */,
+				09611248189132B600288FA1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09611250189132B700288FA1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0961125E189132B700288FA1 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0961122D189132B500288FA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0961124B189132B600288FA1 /* ViewController.m in Sources */,
+				09611245189132B600288FA1 /* AppDelegate.m in Sources */,
+				09611241189132B600288FA1 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0961124E189132B700288FA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09611260189132B700288FA1 /* ExDatePickerSampleTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		09611258189132B700288FA1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 09611230189132B500288FA1 /* ExDatePickerSample */;
+			targetProxy = 09611257189132B700288FA1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0961123D189132B600288FA1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0961123E189132B600288FA1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		09611246189132B600288FA1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				09611247189132B600288FA1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0961125C189132B700288FA1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0961125D189132B700288FA1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		09611261189132B700288FA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		09611262189132B700288FA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		09611264189132B700288FA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ExDatePickerSample/ExDatePickerSample-Prefix.pch";
+				INFOPLIST_FILE = "ExDatePickerSample/ExDatePickerSample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		09611265189132B700288FA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ExDatePickerSample/ExDatePickerSample-Prefix.pch";
+				INFOPLIST_FILE = "ExDatePickerSample/ExDatePickerSample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		09611267189132B700288FA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ExDatePickerSample.app/ExDatePickerSample";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ExDatePickerSample/ExDatePickerSample-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ExDatePickerSampleTests/ExDatePickerSampleTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		09611268189132B700288FA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ExDatePickerSample.app/ExDatePickerSample";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ExDatePickerSample/ExDatePickerSample-Prefix.pch";
+				INFOPLIST_FILE = "ExDatePickerSampleTests/ExDatePickerSampleTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0961122C189132B500288FA1 /* Build configuration list for PBXProject "ExDatePickerSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09611261189132B700288FA1 /* Debug */,
+				09611262189132B700288FA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09611263189132B700288FA1 /* Build configuration list for PBXNativeTarget "ExDatePickerSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09611264189132B700288FA1 /* Debug */,
+				09611265189132B700288FA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		09611266189132B700288FA1 /* Build configuration list for PBXNativeTarget "ExDatePickerSampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09611267189132B700288FA1 /* Debug */,
+				09611268189132B700288FA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 09611229189132B500288FA1 /* Project object */;
+}
