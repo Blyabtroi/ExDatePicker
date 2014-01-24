@@ -227,12 +227,4 @@ static NSString *kCellPickerID = @"CellPicker";
     return hasDatePicker;
 }
 
-- (void)cancelPicker
-{
-    if ([self hasInlineDatePicker]) {
-        [self.tableView beginUpdates];
-        [self.tableView deleteRowsAtIndexPaths:@[self.datePickerIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-        self.datePickerIndexPath = nil;
-        [self.tableView endUpdates];
-    }}
 @end
