@@ -21,6 +21,7 @@
 		09611256189132B700288FA1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09611238189132B600288FA1 /* UIKit.framework */; };
 		0961125E189132B700288FA1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0961125C189132B700288FA1 /* InfoPlist.strings */; };
 		09611260189132B700288FA1 /* ExDatePickerSampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961125F189132B700288FA1 /* ExDatePickerSampleTests.m */; };
+		0961126B189132F300288FA1 /* ExDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0961126A189132F300288FA1 /* ExDatePickerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		0961125B189132B700288FA1 /* ExDatePickerSampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExDatePickerSampleTests-Info.plist"; sourceTree = "<group>"; };
 		0961125D189132B700288FA1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0961125F189132B700288FA1 /* ExDatePickerSampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExDatePickerSampleTests.m; sourceTree = "<group>"; };
+		09611269189132F300288FA1 /* ExDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExDatePickerView.h; sourceTree = "<group>"; };
+		0961126A189132F300288FA1 /* ExDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExDatePickerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +115,7 @@
 		0961123A189132B600288FA1 /* ExDatePickerSample */ = {
 			isa = PBXGroup;
 			children = (
+				0961126C1891331300288FA1 /* ExDatePickerView */,
 				09611243189132B600288FA1 /* AppDelegate.h */,
 				09611244189132B600288FA1 /* AppDelegate.m */,
 				09611246189132B600288FA1 /* Main.storyboard */,
@@ -150,6 +154,15 @@
 				0961125C189132B700288FA1 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0961126C1891331300288FA1 /* ExDatePickerView */ = {
+			isa = PBXGroup;
+			children = (
+				09611269189132F300288FA1 /* ExDatePickerView.h */,
+				0961126A189132F300288FA1 /* ExDatePickerView.m */,
+			);
+			name = ExDatePickerView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0961124B189132B600288FA1 /* ViewController.m in Sources */,
+				0961126B189132F300288FA1 /* ExDatePickerView.m in Sources */,
 				09611245189132B600288FA1 /* AppDelegate.m in Sources */,
 				09611241189132B600288FA1 /* main.m in Sources */,
 			);
