@@ -17,6 +17,10 @@ static NSString *kCellPickerID = @"CellPicker";
 
 @property (nonatomic, strong) NSIndexPath *datePickerIndexPath;
 
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
+
+@property (nonatomic, strong) NSArray *customValues;
+
 @end
 
 @implementation ViewController
@@ -25,6 +29,12 @@ static NSString *kCellPickerID = @"CellPicker";
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    self.customValues = [NSArray arrayWithObjects:@"one", @"two", @"three", @"four", @"five", nil];
+    
+    self.dateFormatter = [[NSDateFormatter alloc] init];
+    [self.dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    [self.dateFormatter setLocale:[NSLocale currentLocale]];
     
     self.exPicker = [[ExDatePickerView alloc] init];
     self.exPicker.backgroundColor = [UIColor whiteColor];
@@ -70,6 +80,34 @@ static NSString *kCellPickerID = @"CellPicker";
     
     cell.textLabel.text = [NSString stringWithFormat:@"%@", self.exPicker.date];
     
+    switch (indexPath.row) {
+        case 0:
+            [self.dateFormatter setDateStyle:NSDateFormatterShortStyle];
+            cell.textLabel.text = [self.dateFormatter stringFromDate:self.exPicker.date];
+            break;
+        case 1:
+            [self.dateFormatter setDateFormat:@"MMMM d"];
+            cell.textLabel.text = [self.dateFormatter stringFromDate:self.exPicker.date];
+            break;
+        case 2:
+            [self.dateFormatter setDateFormat:@"MMMM, y"];
+            cell.textLabel.text = [self.dateFormatter stringFromDate:self.exPicker.date];
+            break;
+        case 3:
+            [self.dateFormatter setDateFormat:@"d"];
+            cell.textLabel.text = [self.dateFormatter stringFromDate:self.exPicker.date];
+            break;
+        case 4:
+            [self.dateFormatter setDateFormat:@"y"];
+            cell.textLabel.text = [self.dateFormatter stringFromDate:self.exPicker.date];
+            break;
+        case 5:
+            cell.textLabel.text = [self.customValues objectAtIndex:0];
+            break;
+        default:
+            break;
+    }
+    
     
     return cell;
 }
@@ -97,7 +135,7 @@ static NSString *kCellPickerID = @"CellPicker";
             self.exPicker.pickerType = ExPickerTypeYear;
             break;
         case 5:
-            [self.exPicker setCustomValues:[NSArray arrayWithObjects:@"one", @"two", @"three", @"four", @"five", nil]];
+            [self.exPicker setCustomValues:self.customValues];
             self.exPicker.pickerType = ExPickerTypeCustomValues;
             break;
         default:
@@ -112,14 +150,14 @@ static NSString *kCellPickerID = @"CellPicker";
 {
     if ([self hasInlineDatePicker] && section == self.datePickerIndexPath.section)
     {
-        return 6;
+        return 7;
     }
-    return 5;
+    return 6;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self hasInlineDatePicker] && self.datePickerIndexPath.row == indexPath.row) {
+    if ([indexPath compare:self.datePickerIndexPath] == NSOrderedSame && [self hasInlineDatePicker]) {
         return 216.0f;
     }
     return 44.0f;
