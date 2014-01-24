@@ -17,8 +17,6 @@ static NSString *kCellPickerID = @"CellPicker";
 
 @property (nonatomic, strong) NSIndexPath *datePickerIndexPath;
 
-@property (nonatomic, strong) NSIndexPath *lastIndexPath;
-
 @end
 
 @implementation ViewController
@@ -34,7 +32,6 @@ static NSString *kCellPickerID = @"CellPicker";
     self.exPicker.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth);
     self.exPicker.valueChangedDelegate = self;
     self.exPicker.pickerType = ExPickerTypeFull;
-    self.lastIndexPath = [NSIndexPath indexPathForRow:1 inSection:0];
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,7 +45,7 @@ static NSString *kCellPickerID = @"CellPicker";
     static NSString *cellIdentifierData = @"CellDate";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifierData];
     
-    if (indexPath.section == self.datePickerIndexPath.section && [self hasInlineDatePicker] && indexPath.row == self.datePickerIndexPath.row)
+    if ([indexPath compare:self.datePickerIndexPath] == NSOrderedSame && [self hasInlineDatePicker])
     {
         cell = [tableView dequeueReusableCellWithIdentifier:kCellPickerID];
         if (nil == cell)
@@ -68,30 +65,10 @@ static NSString *kCellPickerID = @"CellPicker";
     if (nil == cell)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifierData];
-    }
-    
-    switch (indexPath.row) {
-        case 0:
-            cell.textLabel.text = [NSString stringWithFormat:@"%@", self.exPicker.date];
-            break;
-        case 1:
-            cell.textLabel.text = @"ExPickerTypeFull";
-            break;
-        case 2:
-            cell.textLabel.text = @"ExPickerTypeMonthAndYear";
-            break;
-        default:
-            break;
-    }
-
-    if ([indexPath compare:self.lastIndexPath] == NSOrderedSame)
-    {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
-    else
-    {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", self.exPicker.date];
     
     
     return cell;
@@ -105,34 +82,39 @@ static NSString *kCellPickerID = @"CellPicker";
     
     switch (indexPath.row) {
         case 0:
-            [self displayInlineDatePickerForRowAtIndexPath:indexPath];
+            self.exPicker.pickerType = ExPickerTypeFull;
             break;
         case 1:
-            [self cancelPicker];
-            self.exPicker.pickerType = ExPickerTypeFull;
-            self.lastIndexPath = indexPath;
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            self.exPicker.pickerType = ExPickerTypeDayAndMonth;
             break;
         case 2:
-            [self cancelPicker];
             self.exPicker.pickerType = ExPickerTypeMonthAndYear;
-            self.lastIndexPath = indexPath;
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            break;
+        case 3:
+            self.exPicker.pickerType = ExPickerTypeDay;
+            break;
+        case 4:
+            self.exPicker.pickerType = ExPickerTypeYear;
+            break;
+        case 5:
+            [self.exPicker setCustomValues:[NSArray arrayWithObjects:@"one", @"two", @"three", @"four", @"five", nil]];
+            self.exPicker.pickerType = ExPickerTypeCustomValues;
             break;
         default:
             break;
     }
     
-    [self.tableView reloadData];
+    [self displayInlineDatePickerForRowAtIndexPath:indexPath];
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ([self hasInlineDatePicker] && section == self.datePickerIndexPath.section)
     {
-        return 4;
+        return 6;
     }
-    return 3;
+    return 5;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
