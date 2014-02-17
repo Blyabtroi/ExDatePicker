@@ -1,7 +1,6 @@
 #import "ExDatePickerView.h"
 
 
-// Identifiers of components
 #define DAY_COMPONENT 0
 #define MONTH_COMPONENT 1
 #define YEAR_COMPONENT 2
@@ -14,7 +13,6 @@
 #define YEAR_WITH_29TH_FEBRUARY 2016
 #define MONTH_WITH_31_DAYS 1
 
-// Identifies for component views
 #define LABEL_TAG 43
 
 
@@ -30,7 +28,7 @@
 
 -(NSArray *)yearsValues;
 -(NSArray *)monthsValues:(NSInteger)year;
--(NSArray *)daysValuesFor:(NSInteger)month year:(NSInteger)year;// noMoreThan:(NSNumber *)maxDaysCount;
+-(NSArray *)daysValuesFor:(NSInteger)month year:(NSInteger)year;
 -(CGFloat)componentWidthfor:(NSInteger)component;
 
 -(UILabel *)labelForComponent:(NSInteger)component selected:(BOOL)selected;
@@ -62,8 +60,6 @@
 const NSInteger bigRowCount = 1000;
 const NSInteger minYear = 1700;
 const NSInteger maxYear = 2100;
-//const NSInteger minDay = 1;
-//const NSInteger maxDay = 31;
 const CGFloat rowHeight = 44.f;
 
 @synthesize date = _date;
@@ -72,7 +68,6 @@ const CGFloat rowHeight = 44.f;
 @synthesize years = _years;
 @synthesize days = _days;
 @synthesize components;
-//@synthesize maxDaysCount = _maxDaysCount;
 @synthesize customValues = _customValues;
 @synthesize pickerType = _pickerType;
 
@@ -92,13 +87,7 @@ const CGFloat rowHeight = 44.f;
         self.days = [self daysValuesFor:1 year:year];
         self.currentDayIndexPath = [self todayPath];
         
-        self.date = rightNow;// [[NSCalendar currentCalendar] dateFromComponents:dateComponents];
-        
-        
-//        self.months = [self monthsValues];
-//        self.years = [self yearsValues];
-//        self.days = [self daysValuesFor:1];
-//        self.currentDayIndexPath = [self todayPath];
+        self.date = rightNow;
         
         self.delegate = self;
         self.dataSource = self;
@@ -141,24 +130,6 @@ const CGFloat rowHeight = 44.f;
                 break;
         }
 
-        
-//        if (self.pickerType == ExPickerTypeCustomValues)
-//        {
-//            NSMutableArray *days = [NSMutableArray array];
-//            
-//            for (int i=1; i<=[self.customValues count]; i++) {
-//                [days addObject:[NSNumber numberWithInt:i]];
-//            }
-//            
-//            self.days = days;
-//            [self reloadComponent:DAY_COMPONENT];
-//        }
-//        else
-//        {
-//            self.days = [self daysValuesFor:[dateComponents month] year:[dateComponents year]];
-//            [self reloadComponent:DAY_COMPONENT];
-//        }
-        
         self.currentDayIndexPath = [self pathForDate:date];
         [self selectCurrentDay];
     }
@@ -252,7 +223,7 @@ const CGFloat rowHeight = 44.f;
 {
     NSUInteger count = [customValues count];
     
-    NSAssert(count < 32, @"Количество customValues не может быть больше 31, так как привязано к self.days.");
+    NSAssert(count < 32, @"customValues count can't be more then 31, its bound to days row.");
     
     if (customValues != _customValues)
     {
@@ -370,10 +341,10 @@ const CGFloat rowHeight = 44.f;
     {
         NSNumber *comp = [self.components objectAtIndex:component];
         
-        if (([comp intValue] == MONTH_COMPONENT) || ([comp intValue] == YEAR_COMPONENT))//надо пересчитать количество дней в выбранном месяце
+        if (([comp intValue] == MONTH_COMPONENT) || ([comp intValue] == YEAR_COMPONENT))//need to recount amount of days in the new month
         {
             NSInteger dayCount = [self.days count];
-            NSInteger day = [[self.days objectAtIndex:([self selectedRowInComponent:DAY_COMPONENT] % dayCount)] integerValue]; //день, на который надо спозиционироваться в новом месяце
+            NSInteger day = [[self.days objectAtIndex:([self selectedRowInComponent:DAY_COMPONENT] % dayCount)] integerValue]; //the selected day after month's change
             
             NSInteger monthCount = [self.months count];
             NSString *monthName = [self.months objectAtIndex:([self selectedRowInComponent:MONTH_COMPONENT] % monthCount)];
@@ -387,23 +358,23 @@ const CGFloat rowHeight = 44.f;
             else {
                 year = YEAR_WITH_29TH_FEBRUARY;
             }
-            NSArray *days = [self daysValuesFor:month year:year]; //количество дней в новом месяце
+            NSArray *days = [self daysValuesFor:month year:year]; //amount of days in the new month
             
             NSInteger newDayCount = [days count];
-            if (newDayCount != dayCount) { //обновление только если в новом месяце не столько же дней
+            if (newDayCount != dayCount) { //need to update only if amount of days in the new month differs from the old month
             
                 self.days = days;
                 [self reloadComponent:DAY_COMPONENT];
             
                 BOOL isThereDay = day > newDayCount;
                 if (isThereDay)
-                    day = newDayCount - 1; //если в новом месяце меньше дней, чем выбранный день
+                    day = newDayCount - 1; //if the new month has less days then the selected day
                 else
-                    day = day - 1; //для row нумерация начинается с 0
+                    day = day - 1; //row starts from 0
                 day = day + [self bigRowDayCount] / 2;
                 [self selectRow: day
                     inComponent: DAY_COMPONENT
-                       animated: isThereDay]; //явно надо спозиционироваться на новом дне, когда в новом месяце нет такого дня
+                       animated: isThereDay]; //need to show user that we change the selected day
             }
         }
     }
@@ -597,10 +568,6 @@ const CGFloat rowHeight = 44.f;
     while ([dateComponents month] == month) {
         NSNumber *day = [NSNumber numberWithInteger:[dateComponents day]];
         [days addObject:day];
-
-//        if (maxDaysCount != nil && [day isEqualToNumber:maxDaysCount]) {
-//            break;
-//        }
         
         date = [date dateByAddingTimeInterval:SECONDS_IN_24H];
        
@@ -660,7 +627,6 @@ const CGFloat rowHeight = 44.f;
         }
     }
     
-    //set table on the middle
     for(NSString *cellMonth in self.months)
     {
         if([cellMonth isEqualToString:month])
@@ -754,16 +720,11 @@ const CGFloat rowHeight = 44.f;
 {
     NSDateComponents* dateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:[NSDate date]];
     return [NSNumber numberWithInteger:[dateComponents day]];
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//    [formatter setDateFormat:@"dd"];
-//    return [formatter stringFromDate:[NSDate date]];
 }
 
 -(NSString *)todayMonthName
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//    NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-//    [formatter setLocale:usLocale];
     [formatter setDateFormat:@"MMMM"];
     return [formatter stringFromDate:[NSDate date]];
 }
