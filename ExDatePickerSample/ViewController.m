@@ -94,13 +94,12 @@ static NSString *kCellPickerID = @"CellPicker";
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
-//    cell.textLabel.text = [NSString stringWithFormat:@"%@", self.exPicker.date];
     NSLocale *locale = [NSLocale currentLocale];
     NSString *dateFormat;
     
     switch (indexPath.row) {
         case 0:
-            [self.dateFormatter setDateStyle:NSDateFormatterShortStyle];
+            [self.dateFormatter setDateStyle:NSDateFormatterLongStyle];
             cell.textLabel.text = [self.dateFormatter stringFromDate:self.exPicker.date];
             break;
         case 1:
@@ -153,7 +152,7 @@ static NSString *kCellPickerID = @"CellPicker";
         case 0:
             self.exPicker.pickerType = ExPickerTypeFull;
             
-            [self.dateFormatter setDateStyle:NSDateFormatterShortStyle];
+            [self.dateFormatter setDateStyle:NSDateFormatterLongStyle];
             self.exPicker.date = [self.dateFormatter dateFromString: cell.textLabel.text];
             break;
         case 1:

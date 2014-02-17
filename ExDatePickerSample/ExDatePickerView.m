@@ -103,21 +103,27 @@ const CGFloat rowHeight = 44.f;
     
     if (date != _date)
     {
-        _date = date;
+        //        _date = date;
         
-        NSDateComponents* dateComponents = [[NSCalendar currentCalendar] components:unitFlags fromDate:_date];
-
+        NSDateComponents* dateComponents = [[NSCalendar currentCalendar] components:unitFlags fromDate:date];
+        
         switch (self.pickerType) {
             case ExPickerTypeCustomValues: {
+                _date = date;
+                
                 NSMutableArray *days = [NSMutableArray array];
                 for (int i=1; i<=[self.customValues count]; i++) {
                     [days addObject:[NSNumber numberWithInt:i]];
-                }                self.days = days;
+                }
+                self.days = days;
                 [self reloadComponent:DAY_COMPONENT];
             }
                 break;
             case ExPickerTypeDay:
-                self.days = [self daysValuesFor:MONTH_WITH_31_DAYS year:YEAR_WITH_29TH_FEBRUARY];
+                [dateComponents setMonth:MONTH_WITH_31_DAYS];
+                _date = [[NSCalendar currentCalendar] dateFromComponents:dateComponents];
+                
+                self.days = [self daysValuesFor:MONTH_WITH_31_DAYS year:[dateComponents year]];
                 [self reloadComponent:DAY_COMPONENT];
                 break;
             case ExPickerTypeYear:
@@ -125,11 +131,13 @@ const CGFloat rowHeight = 44.f;
             case ExPickerTypeDayAndMonth:
             case ExPickerTypeFull:
             default:
+                _date = date;
+                
                 self.days = [self daysValuesFor:[dateComponents month] year:[dateComponents year]];
                 [self reloadComponent:DAY_COMPONENT];
                 break;
         }
-
+        
         self.currentDayIndexPath = [self pathForDate:date];
         [self selectCurrentDay];
     }
@@ -141,7 +149,7 @@ const CGFloat rowHeight = 44.f;
     NSNumber *day;
     NSString *month;
     NSNumber *year;
-   
+    
     BOOL isDay = NO;
     BOOL isMonth = NO;
     for (NSNumber *comp in self.components) {
@@ -179,7 +187,7 @@ const CGFloat rowHeight = 44.f;
     [formatter setDateFormat:@"dd.MMMM.yyyy"];
     NSString *formatable = [NSString stringWithFormat:@"%@.%@.%@", (day != nil ? day : [self dayNumberFrom:_date]), (month != nil ? month : [self monthNameFrom:_date]), (year != nil ? year : [self yearNumberFrom:_date])];
     NSDate *date = [formatter dateFromString:formatable];
-    return date; 
+    return date;
 }
 
 -(NSString *)formattedDate
@@ -213,7 +221,7 @@ const CGFloat rowHeight = 44.f;
             break;
         case ExPickerTypeFull:
         default:
-            [formatter setDateStyle:NSDateFormatterShortStyle];
+            [formatter setDateStyle:NSDateFormatterLongStyle];
             break;
     }
     return [formatter stringFromDate:self.date];
@@ -249,6 +257,7 @@ const CGFloat rowHeight = 44.f;
         
         switch (pickerType) {
             case ExPickerTypeCustomValues:
+                NSAssert(self.customValues != nil, @"customValues must be set before.");
                 self.components = [NSArray arrayWithObjects:[NSNumber numberWithInt:CUSTOM_COMPONENT], nil];
                 break;
             case ExPickerTypeDay:
@@ -362,10 +371,10 @@ const CGFloat rowHeight = 44.f;
             
             NSInteger newDayCount = [days count];
             if (newDayCount != dayCount) { //need to update only if amount of days in the new month differs from the old month
-            
+                
                 self.days = days;
                 [self reloadComponent:DAY_COMPONENT];
-            
+                
                 BOOL isThereDay = day > newDayCount;
                 if (isThereDay)
                     day = newDayCount - 1; //if the new month has less days then the selected day
@@ -515,14 +524,14 @@ const CGFloat rowHeight = 44.f;
     [dateComponents setYear:year];
     
     NSDate *date = [[NSCalendar currentCalendar] dateFromComponents:dateComponents];
-   
+    
     NSCalendar* calendar = [NSCalendar currentCalendar];
     
     NSMutableArray *returnMonths = [NSMutableArray arrayWithCapacity:12];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     NSLocale *locale = [NSLocale currentLocale];
     [formatter setLocale:locale];
-
+    
     [formatter setDateFormat:@"MMMM"];
     for (int i=0; i<12; i++) {
         
@@ -570,10 +579,10 @@ const CGFloat rowHeight = 44.f;
         [days addObject:day];
         
         date = [date dateByAddingTimeInterval:SECONDS_IN_24H];
-       
+        
         dateComponents = [calendar components:unitFlags fromDate:date];
     }
-
+    
     return days;
 }
 
@@ -607,7 +616,7 @@ const CGFloat rowHeight = 44.f;
     }
 }
 
--(NSMutableArray *)todayPath 
+-(NSMutableArray *)todayPath
 {
     CGFloat daySection = 0.f;
     CGFloat monthSection = 0.f;
@@ -665,7 +674,7 @@ const CGFloat rowHeight = 44.f;
                 break;
         }
     }
-
+    
     
     return ret;
 }
@@ -708,9 +717,9 @@ const CGFloat rowHeight = 44.f;
             break;
         }
     }
-
-
-
+    
+    
+    
     NSMutableArray *ret = [NSMutableArray arrayWithObjects:[NSNumber numberWithFloat:daySection], [NSNumber numberWithFloat:monthSection], [NSNumber numberWithFloat:yearSection], nil];
     
     return ret;
