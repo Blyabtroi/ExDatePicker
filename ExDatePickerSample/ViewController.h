@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ExDatePickerView.h"
 
-@interface ViewController : UITableViewController
+@interface ViewController : UITableViewController <ExDatePickerValueChangedDelegate>
 
 @end

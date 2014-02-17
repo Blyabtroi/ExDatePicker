@@ -20,6 +20,7 @@ static NSString *kCellPickerID = @"CellPicker";
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 
 @property (nonatomic, strong) NSArray *customValues;
+@property (nonatomic) NSInteger curValue;
 
 @end
 
@@ -31,6 +32,7 @@ static NSString *kCellPickerID = @"CellPicker";
 	// Do any additional setup after loading the view, typically from a nib.
     
     self.customValues = [NSArray arrayWithObjects:@"one", @"two", @"three", @"four", @"five", nil];
+    self.curValue = 0;
     
     self.dateFormatter = [[NSDateFormatter alloc] init];
     [self.dateFormatter setTimeStyle:NSDateFormatterNoStyle];
@@ -48,6 +50,20 @@ static NSString *kCellPickerID = @"CellPicker";
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)exDatePickerValueChanged:(id)sender {
+    ExDatePickerView *picker = (ExDatePickerView *)sender;
+    
+    NSIndexPath *indexPath = [self hasInlineDatePicker] ? [NSIndexPath indexPathForRow:self.datePickerIndexPath.row - 1 inSection:self.datePickerIndexPath.section]  : [self.tableView indexPathForSelectedRow];
+	UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    
+    cell.textLabel.text = picker.formattedDate;
+    
+    if (self.exPicker.pickerType == ExPickerTypeCustomValues) {
+        NSDateComponents* dateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:picker.date];
+        self.curValue = [dateComponents day] - 1;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -78,7 +94,9 @@ static NSString *kCellPickerID = @"CellPicker";
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", self.exPicker.date];
+//    cell.textLabel.text = [NSString stringWithFormat:@"%@", self.exPicker.date];
+    NSLocale *locale = [NSLocale currentLocale];
+    NSString *dateFormat;
     
     switch (indexPath.row) {
         case 0:
@@ -86,23 +104,27 @@ static NSString *kCellPickerID = @"CellPicker";
             cell.textLabel.text = [self.dateFormatter stringFromDate:self.exPicker.date];
             break;
         case 1:
-            [self.dateFormatter setDateFormat:@"MMMM d"];
+            dateFormat = [NSDateFormatter dateFormatFromTemplate:@"MMMMd" options:0 locale:locale];
+            [self.dateFormatter setDateFormat:dateFormat];
             cell.textLabel.text = [self.dateFormatter stringFromDate:self.exPicker.date];
             break;
         case 2:
-            [self.dateFormatter setDateFormat:@"MMMM, y"];
+            dateFormat = [NSDateFormatter dateFormatFromTemplate:@"yMMMM" options:0 locale:locale];
+            [self.dateFormatter setDateFormat:dateFormat];
             cell.textLabel.text = [self.dateFormatter stringFromDate:self.exPicker.date];
             break;
         case 3:
-            [self.dateFormatter setDateFormat:@"d"];
+            dateFormat = [NSDateFormatter dateFormatFromTemplate:@"d" options:0 locale:locale];
+            [self.dateFormatter setDateFormat:dateFormat];
             cell.textLabel.text = [self.dateFormatter stringFromDate:self.exPicker.date];
             break;
         case 4:
-            [self.dateFormatter setDateFormat:@"y"];
+            dateFormat = [NSDateFormatter dateFormatFromTemplate:@"y" options:0 locale:locale];
+            [self.dateFormatter setDateFormat:dateFormat];
             cell.textLabel.text = [self.dateFormatter stringFromDate:self.exPicker.date];
             break;
         case 5:
-            cell.textLabel.text = [self.customValues objectAtIndex:0];
+            cell.textLabel.text = [self.customValues objectAtIndex:self.curValue];
             break;
         default:
             break;
@@ -118,25 +140,57 @@ static NSString *kCellPickerID = @"CellPicker";
     if ([cell.reuseIdentifier isEqualToString:kCellPickerID])
         return;
     
-    switch (indexPath.row) {
+    int row = indexPath.row;
+    int pickerRow = self.datePickerIndexPath.row;
+    if ([self hasInlineDatePicker] && pickerRow < row) {
+            row = row - 1;
+    }
+    
+    NSLocale *locale = [NSLocale currentLocale];
+    NSString *dateFormat;
+    
+    switch (row) {
         case 0:
             self.exPicker.pickerType = ExPickerTypeFull;
+            
+            [self.dateFormatter setDateStyle:NSDateFormatterShortStyle];
+            self.exPicker.date = [self.dateFormatter dateFromString: cell.textLabel.text];
             break;
         case 1:
             self.exPicker.pickerType = ExPickerTypeDayAndMonth;
+            
+            dateFormat = [NSDateFormatter dateFormatFromTemplate:@"MMMMd" options:0 locale:locale];
+            [self.dateFormatter setDateFormat:dateFormat];
+            self.exPicker.date = [self.dateFormatter dateFromString: cell.textLabel.text];
             break;
         case 2:
             self.exPicker.pickerType = ExPickerTypeMonthAndYear;
+            
+            dateFormat = [NSDateFormatter dateFormatFromTemplate:@"yMMMM" options:0 locale:locale];
+            [self.dateFormatter setDateFormat:dateFormat];
+            self.exPicker.date = [self.dateFormatter dateFromString: cell.textLabel.text];
             break;
         case 3:
             self.exPicker.pickerType = ExPickerTypeDay;
+            
+            dateFormat = [NSDateFormatter dateFormatFromTemplate:@"d" options:0 locale:locale];
+            [self.dateFormatter setDateFormat:dateFormat];
+            self.exPicker.date = [self.dateFormatter dateFromString: cell.textLabel.text];
             break;
         case 4:
             self.exPicker.pickerType = ExPickerTypeYear;
+            
+            dateFormat = [NSDateFormatter dateFormatFromTemplate:@"y" options:0 locale:locale];
+            [self.dateFormatter setDateFormat:dateFormat];
+            self.exPicker.date = [self.dateFormatter dateFromString: cell.textLabel.text];
             break;
         case 5:
             [self.exPicker setCustomValues:self.customValues];
             self.exPicker.pickerType = ExPickerTypeCustomValues;
+            
+            dateFormat = [NSDateFormatter dateFormatFromTemplate:@"d" options:0 locale:locale];
+            [self.dateFormatter setDateFormat:dateFormat];
+            self.exPicker.date = [self.dateFormatter dateFromString: [NSString stringWithFormat:@"%d", self.curValue + 1]];
             break;
         default:
             break;

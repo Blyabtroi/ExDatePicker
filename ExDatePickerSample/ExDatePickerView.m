@@ -12,6 +12,7 @@
 #define DEFAULT_NUMBER_OF_COMPONENTS 3
 
 #define YEAR_WITH_29TH_FEBRUARY 2016
+#define MONTH_WITH_31_DAYS 1
 
 // Identifies for component views
 #define LABEL_TAG 43
@@ -117,22 +118,46 @@ const CGFloat rowHeight = 44.f;
         
         NSDateComponents* dateComponents = [[NSCalendar currentCalendar] components:unitFlags fromDate:_date];
 
-        if (self.pickerType == ExPickerTypeCustomValues)
-        {
-            NSMutableArray *days = [NSMutableArray array];
-            
-            for (int i=1; i<=[self.customValues count]; i++) {
-                [days addObject:[NSNumber numberWithInt:i]];
+        switch (self.pickerType) {
+            case ExPickerTypeCustomValues: {
+                NSMutableArray *days = [NSMutableArray array];
+                for (int i=1; i<=[self.customValues count]; i++) {
+                    [days addObject:[NSNumber numberWithInt:i]];
+                }                self.days = days;
+                [self reloadComponent:DAY_COMPONENT];
             }
-            
-            self.days = days;
-            [self reloadComponent:DAY_COMPONENT];
+                break;
+            case ExPickerTypeDay:
+                self.days = [self daysValuesFor:MONTH_WITH_31_DAYS year:YEAR_WITH_29TH_FEBRUARY];
+                [self reloadComponent:DAY_COMPONENT];
+                break;
+            case ExPickerTypeYear:
+            case ExPickerTypeMonthAndYear:
+            case ExPickerTypeDayAndMonth:
+            case ExPickerTypeFull:
+            default:
+                self.days = [self daysValuesFor:[dateComponents month] year:[dateComponents year]];
+                [self reloadComponent:DAY_COMPONENT];
+                break;
         }
-        else
-        {
-            self.days = [self daysValuesFor:[dateComponents month] year:[dateComponents year]];
-            [self reloadComponent:DAY_COMPONENT];
-        }
+
+        
+//        if (self.pickerType == ExPickerTypeCustomValues)
+//        {
+//            NSMutableArray *days = [NSMutableArray array];
+//            
+//            for (int i=1; i<=[self.customValues count]; i++) {
+//                [days addObject:[NSNumber numberWithInt:i]];
+//            }
+//            
+//            self.days = days;
+//            [self reloadComponent:DAY_COMPONENT];
+//        }
+//        else
+//        {
+//            self.days = [self daysValuesFor:[dateComponents month] year:[dateComponents year]];
+//            [self reloadComponent:DAY_COMPONENT];
+//        }
         
         self.currentDayIndexPath = [self pathForDate:date];
         [self selectCurrentDay];
@@ -186,6 +211,43 @@ const CGFloat rowHeight = 44.f;
     return date; 
 }
 
+-(NSString *)formattedDate
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSLocale *locale = [NSLocale currentLocale];
+    NSString *dateFormat;
+    
+    switch (self.pickerType) {
+        case ExPickerTypeCustomValues: {
+            NSDateComponents* dateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:self.date];
+            int pos = ([dateComponents day] - 1) % [self.customValues count];
+            return [self.customValues objectAtIndex:pos];
+        }
+            break;
+        case ExPickerTypeDay:
+            dateFormat = [NSDateFormatter dateFormatFromTemplate:@"d" options:0 locale:locale];
+            [formatter setDateFormat:dateFormat];
+            break;
+        case ExPickerTypeYear:
+            dateFormat = [NSDateFormatter dateFormatFromTemplate:@"y" options:0 locale:locale];
+            [formatter setDateFormat:dateFormat];
+            break;
+        case ExPickerTypeMonthAndYear:
+            dateFormat = [NSDateFormatter dateFormatFromTemplate:@"yMMMM" options:0 locale:locale];
+            [formatter setDateFormat:dateFormat];
+            break;
+        case ExPickerTypeDayAndMonth:
+            dateFormat = [NSDateFormatter dateFormatFromTemplate:@"MMMMd" options:0 locale:locale];
+            [formatter setDateFormat:dateFormat];
+            break;
+        case ExPickerTypeFull:
+        default:
+            [formatter setDateStyle:NSDateFormatterShortStyle];
+            break;
+    }
+    return [formatter stringFromDate:self.date];
+}
+
 -(void)setCustomValues:(NSArray *)customValues
 {
     NSUInteger count = [customValues count];
@@ -208,20 +270,6 @@ const CGFloat rowHeight = 44.f;
     }
 }
 
-//-(void)setMaxDaysCount:(NSNumber *)maxDaysCount
-//{
-//    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
-//    
-//    if (maxDaysCount != _maxDaysCount)
-//    {
-//        _maxDaysCount = maxDaysCount;
-//        
-//        NSDateComponents* dateComponents = [[NSCalendar currentCalendar] components:unitFlags fromDate:self.date];
-//        self.days = [self daysValuesFor:[dateComponents month] noMoreThan:maxDaysCount];
-//
-//        [self reloadComponent:DAY_COMPONENT];
-//    }
-//}
 
 -(void)setPickerType:(ExPickerType)pickerType
 {

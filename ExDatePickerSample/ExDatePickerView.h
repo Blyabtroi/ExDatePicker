@@ -19,16 +19,15 @@ typedef enum {
 
 @interface ExDatePickerView : UIPickerView <UIPickerViewDelegate, UIPickerViewDataSource>
 
-@property (nonatomic, strong) NSDate *date;
-
 -(void)selectCurrentDay;
 
-//-(void)setPickerType:(ExPickerType)type;
+@property (nonatomic, strong) NSDate *date;
+@property (nonatomic, readonly) NSString *formattedDate;
+
 @property (nonatomic) ExPickerType pickerType;
 
 @property (nonatomic, weak) id <ExDatePickerValueChangedDelegate> valueChangedDelegate;
 
-//@property (nonatomic, strong) NSNumber *maxDaysCount;
 @property (nonatomic, strong) NSArray *customValues;
 
 @end
