@@ -103,8 +103,6 @@ const CGFloat rowHeight = 44.f;
     
     if (date != _date)
     {
-        //        _date = date;
-        
         NSDateComponents* dateComponents = [[NSCalendar currentCalendar] components:unitFlags fromDate:date];
         
         switch (self.pickerType) {
@@ -185,20 +183,7 @@ const CGFloat rowHeight = 44.f;
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"dd MM yyyy"];
-    //    NSLocale *locale = [NSLocale currentLocale];
-//    NSString *dateFormat = [NSDateFormatter dateFormatFromTemplate:@"dMMMMy" options:0 locale:locale];
-//    [formatter setDateFormat:dateFormat];
-    
-//    [formatter setDateFormat:@"dd.MMMM.yyyy"];
-    
-//    NSDateComponents* dateComponents = [[NSDateComponents alloc]init];
-//    NSNumber *dayNumber = (day != nil ? day : [self dayNumberFrom:_date]);
-//    [dateComponents setDay:[dayNumber intValue]];
-//    NSNumber *monthNumber =
-//    [dateComponents setMonth:1];
-//    NSNumber *yearNumber = (year != nil ? year : [self yearNumberFrom:_date]);
-//    [dateComponents setYear:[yearNumber intValue]];
-    
+
     NSString *formatable = [NSString stringWithFormat:@"%@ %d %@", (day != nil ? day : [self dayNumberFrom:_date]), (month != -1 ? month : [self monthNumberFrom:_date]), (year != nil ? year : [self yearNumberFrom:_date])];
     NSDate *date = [formatter dateFromString:formatable];
     return date;
@@ -519,7 +504,7 @@ const CGFloat rowHeight = 44.f;
     CGRect frame = CGRectMake(0.f, 0.f, [self componentWidthfor:component],rowHeight);
     
     UILabel *label = [[UILabel alloc] initWithFrame:frame];
-    label.textAlignment = NSTextAlignmentCenter;//UITextAlignmentCenter;
+    label.textAlignment = NSTextAlignmentCenter;
     label.backgroundColor = [UIColor clearColor];
     label.textColor = selected ? [UIColor blueColor] : [UIColor blackColor];
     label.font = [UIFont boldSystemFontOfSize:22.f];
@@ -543,10 +528,6 @@ const CGFloat rowHeight = 44.f;
     
     NSMutableArray *returnMonths = [NSMutableArray arrayWithCapacity:12];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//    NSLocale *locale = [NSLocale currentLocale];
-//    [formatter setLocale:locale];
-//    
-//    [formatter setDateFormat:@"MMMMy"];
     NSLocale *locale = [NSLocale currentLocale];
     NSString *dateFormat = [NSDateFormatter dateFormatFromTemplate:@"MMMM" options:0 locale:locale];
     [formatter setDateFormat:dateFormat];
@@ -751,8 +732,6 @@ const CGFloat rowHeight = 44.f;
 -(NSString *)todayMonthName
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//    [formatter setDateFormat:@"MMMM"];
-    
     NSLocale *locale = [NSLocale currentLocale];
     NSString *dateFormat = [NSDateFormatter dateFormatFromTemplate:@"MMMM" options:0 locale:locale];
     [formatter setDateFormat:dateFormat];
@@ -775,8 +754,6 @@ const CGFloat rowHeight = 44.f;
 -(NSString *)monthNameFrom:(NSDate *)date
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//    [formatter setDateFormat:@"MMMM"];
-
     NSLocale *locale = [NSLocale currentLocale];
     NSString *dateFormat = [NSDateFormatter dateFormatFromTemplate:@"MMMM" options:0 locale:locale];
     [formatter setDateFormat:dateFormat];
