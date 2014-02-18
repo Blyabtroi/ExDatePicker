@@ -17,4 +17,4 @@ Based on [IgorFedorchuk's MonthYearDatePicker] [1]
 
 
 [1]: https://github.com/IgorFedorchuk/MonthYearDatePicker
-[2]: https://github.com/Blyabtroi/ExDatePicker/blob/master/Screeshots/FullType.png
+[2]: https://raw2.github.com/Blyabtroi/ExDatePicker/master/Screeshots/FullType.png
