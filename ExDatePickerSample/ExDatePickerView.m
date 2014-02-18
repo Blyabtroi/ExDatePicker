@@ -147,7 +147,7 @@ const CGFloat rowHeight = 44.f;
 -(NSDate *)date
 {
     NSNumber *day;
-    NSString *month;
+    NSInteger month = -1;
     NSNumber *year;
     
     BOOL isDay = NO;
@@ -170,7 +170,7 @@ const CGFloat rowHeight = 44.f;
             case MONTH_COMPONENT: {
                 isMonth = YES;
                 NSInteger monthCount = [self.months count];
-                month = [self.months objectAtIndex:([self selectedRowInComponent:MONTH_COMPONENT - (isDay ? 0 : 1)] % monthCount)];
+                month = [self monthNumberFromName:[self.months objectAtIndex:([self selectedRowInComponent:MONTH_COMPONENT - (isDay ? 0 : 1)] % monthCount)]];
             }
                 break;
             case YEAR_COMPONENT: {
@@ -184,8 +184,22 @@ const CGFloat rowHeight = 44.f;
     }
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd.MMMM.yyyy"];
-    NSString *formatable = [NSString stringWithFormat:@"%@.%@.%@", (day != nil ? day : [self dayNumberFrom:_date]), (month != nil ? month : [self monthNameFrom:_date]), (year != nil ? year : [self yearNumberFrom:_date])];
+    [formatter setDateFormat:@"dd MM yyyy"];
+    //    NSLocale *locale = [NSLocale currentLocale];
+//    NSString *dateFormat = [NSDateFormatter dateFormatFromTemplate:@"dMMMMy" options:0 locale:locale];
+//    [formatter setDateFormat:dateFormat];
+    
+//    [formatter setDateFormat:@"dd.MMMM.yyyy"];
+    
+//    NSDateComponents* dateComponents = [[NSDateComponents alloc]init];
+//    NSNumber *dayNumber = (day != nil ? day : [self dayNumberFrom:_date]);
+//    [dateComponents setDay:[dayNumber intValue]];
+//    NSNumber *monthNumber =
+//    [dateComponents setMonth:1];
+//    NSNumber *yearNumber = (year != nil ? year : [self yearNumberFrom:_date]);
+//    [dateComponents setYear:[yearNumber intValue]];
+    
+    NSString *formatable = [NSString stringWithFormat:@"%@ %d %@", (day != nil ? day : [self dayNumberFrom:_date]), (month != -1 ? month : [self monthNumberFrom:_date]), (year != nil ? year : [self yearNumberFrom:_date])];
     NSDate *date = [formatter dateFromString:formatable];
     return date;
 }
@@ -529,10 +543,13 @@ const CGFloat rowHeight = 44.f;
     
     NSMutableArray *returnMonths = [NSMutableArray arrayWithCapacity:12];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    NSLocale *locale = [NSLocale currentLocale];
+//    [formatter setLocale:locale];
+//    
+//    [formatter setDateFormat:@"MMMMy"];
     NSLocale *locale = [NSLocale currentLocale];
-    [formatter setLocale:locale];
-    
-    [formatter setDateFormat:@"MMMM"];
+    NSString *dateFormat = [NSDateFormatter dateFormatFromTemplate:@"MMMM" options:0 locale:locale];
+    [formatter setDateFormat:dateFormat];
     for (int i=0; i<12; i++) {
         
         [returnMonths addObject:[formatter stringFromDate:date]];
@@ -734,7 +751,12 @@ const CGFloat rowHeight = 44.f;
 -(NSString *)todayMonthName
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MMMM"];
+//    [formatter setDateFormat:@"MMMM"];
+    
+    NSLocale *locale = [NSLocale currentLocale];
+    NSString *dateFormat = [NSDateFormatter dateFormatFromTemplate:@"MMMM" options:0 locale:locale];
+    [formatter setDateFormat:dateFormat];
+    
     return [formatter stringFromDate:[NSDate date]];
 }
 
@@ -753,7 +775,12 @@ const CGFloat rowHeight = 44.f;
 -(NSString *)monthNameFrom:(NSDate *)date
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MMMM"];
+//    [formatter setDateFormat:@"MMMM"];
+
+    NSLocale *locale = [NSLocale currentLocale];
+    NSString *dateFormat = [NSDateFormatter dateFormatFromTemplate:@"MMMM" options:0 locale:locale];
+    [formatter setDateFormat:dateFormat];
+    
     return [formatter stringFromDate:date];
 }
 
