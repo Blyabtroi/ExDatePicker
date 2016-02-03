@@ -33,9 +33,9 @@ License
     limitations under the License.
 
 [1]: https://github.com/IgorFedorchuk/MonthYearDatePicker
-[2]: https://raw2.github.com/Blyabtroi/ExDatePicker/master/Screeshots/FullType.png
-[3]: https://raw2.github.com/Blyabtroi/ExDatePicker/master/Screeshots/Day.png
-[4]: https://raw2.github.com/Blyabtroi/ExDatePicker/master/Screeshots/Year.png
-[5]: https://raw2.github.com/Blyabtroi/ExDatePicker/master/Screeshots/MonthDay.png
-[6]: https://raw2.github.com/Blyabtroi/ExDatePicker/master/Screeshots/MonthYear.png
+[2]: https://github.com/Blyabtroi/ExDatePicker/blob/master/Screeshots/FullType.png
+[3]: https://github.com/Blyabtroi/ExDatePicker/blob/master/Screeshots/Day.png
+[4]: https://github.com/Blyabtroi/ExDatePicker/blob/master/Screeshots/Year.png
+[5]: https://github.com/Blyabtroi/ExDatePicker/blob/master/Screeshots/MonthDay.png
+[6]: https://github.com/Blyabtroi/ExDatePicker/blob/master/Screeshots/MonthYear.png
 [7]: https://github.com/Blyabtroi/ExDatePicker/blob/master/Screeshots/CustomValues.png
