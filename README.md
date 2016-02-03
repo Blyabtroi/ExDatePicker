@@ -38,4 +38,4 @@ License
 [4]: https://raw2.github.com/Blyabtroi/ExDatePicker/master/Screeshots/Year.png
 [5]: https://raw2.github.com/Blyabtroi/ExDatePicker/master/Screeshots/MonthDay.png
 [6]: https://raw2.github.com/Blyabtroi/ExDatePicker/master/Screeshots/MonthYear.png
-[7]: https://raw2.github.com/Blyabtroi/ExDatePicker/master/Screeshots/CustomValues.png
+[7]: https://github.com/Blyabtroi/ExDatePicker/blob/master/Screeshots/CustomValues.png
